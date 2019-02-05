@@ -45,7 +45,8 @@ app.post('/contentlog', (req, res, next) => {
     if (!fs.existsSync(dir)){
         fs.mkdirSync(dir);
     }
-    fs.writeFile(dir+'/'+req.body['id']+'.html', req.body.html, function(err) {
+    console.log(req.body.height);
+    fs.writeFile(dir+'/'+req.body['id']+'_html.json', JSON.stringify(req.body), function(err) {
         if(err) console.log(err);
         else console.log('HTML  File with id '+req.body.id+' created successfully.');
     });
@@ -57,4 +58,4 @@ const server = app.listen(33333, function() {
     let host = server.address().address;
     let port = server.address().port;
     console.log("Listening on port 33333...");
-})
+});
